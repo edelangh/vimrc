@@ -158,6 +158,9 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Unknown"   : "?"
     \ }
 
+" async jobs !
+Plugin 'prabirshrestha/async.vim'
+
 " //// My plugins ////
 Plugin 'edelangh/vim-termopen'
 
@@ -195,14 +198,35 @@ command! TOEnter :startinsert
 nnoremap <cr> :TOEnter<cr>
 " ////
 
+fu! s:jobDevNull(job_id, data, event_type)
+endfunction
+
+function! s:jobErr(job_id, data, event_type)
+	"echo a:job_id . ' ' . a:event_type
+	echo join(a:data, "\n")
+endfunction
+
+fu! s:jobEnd(job_id, data, event_type)
+	silent! cscope add cscope.out
+	echom 'cscope database added'
+endfunction
+
 fu! g:RooterPostChangeDirectory()
-	if !exists("g:cscope_scanned") && (match(@%, '.*\.[ch]') == 0 || match(@%, '.*\.cpp') == 0 || match(@%, '.*\.cc') == 0)
-		if confirm('Do you want to update cscope.files ?', "&Yes\n&No", 1) == 1
-			let r = system('find . -name "*.[ch]" > cscope.files && find . -name "*.cc" >> cscope.files && find . -name "*.hh" >> cscope.files && find . -name "*.cpp" >> cscope.files && cscope -b -icscope.files')
+	if !exists("g:cscopeScanRunning") && (match(@%, '.*\.[ch]') == 0 || match(@%, '.*\.cpp') == 0 || match(@%, '.*\.cc') == 0)
+		let cmd = "find -regex '.*/.*\.\\(c\\|cpp\\|h\\|hh\\)$' > cscope.files && cscope -b -icscope.files"
+		let argv = ['bash', '-c', cmd]
+		let jobid = async#job#start(argv, {
+		    \ 'on_stdout': function('s:jobDevNull'),
+		    \ 'on_stderr': function('s:jobDevNull'),
+		    \ 'on_exit': function('s:jobEnd'),
+		\ })
+		if jobid > 0
+			let g:cscopeScanRunning = 1
+			echom 'job started'
+			let pid = async#job#pid(jobid)
+		else
+			echom 'job failed to start'
 		endif
-		let g:cscope_scanned = 1
 		" TODO: We catch all error of cscope, but we should only catch
-		" double add
-		silent! cscope add cscope.out
 	endif
 endfu
