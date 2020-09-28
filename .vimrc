@@ -161,6 +161,10 @@ let g:NERDTreeIndicatorMapCustom = {
 " async jobs !
 Plugin 'prabirshrestha/async.vim'
 
+" Java
+Plugin 'uiiaoo/java-syntax.vim'
+au BufRead,BufNewFile *.hal set filetype=java
+
 " //// My plugins ////
 Plugin 'edelangh/vim-termopen'
 
