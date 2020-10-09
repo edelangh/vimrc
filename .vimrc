@@ -1,11 +1,5 @@
-""" Knowed issie
-" bookmarks win is limited
-" 'cscope find g' go to next tab after find => look tabnext
-" Color Error:   #want an updater but don't 
-
-" NEED: :w !sudo tee %
-set nocompatible              " be iMproved, required
-filetype off                  " required
+set nocompatible
+filetype off
 set encoding=UTF-8
 set mouse=a
 set list
@@ -29,7 +23,7 @@ let g:rooter_patterns = ['.git/', 'alchemy/', 'Cargo.toml', 'node_modules/']
 " let Vundle manage Vundle, required
 Plug 'VundleVim/Vundle.vim'
 
-" GIT
+" git
 Plug 'tpope/vim-fugitive'
 " blame: Gblame
 
@@ -44,8 +38,9 @@ let g:ctrlp_max_files=0
 "let g:ycm_error_symbol = 'X('
 "let g:ycm_warning_symbol = ':|'
 
-" Allowing rename current file :/
+" Allow rename current file
 Plug 'danro/rename.vim'
+":rename [file]
 
 " Syntax checking
 Plug 'vim-syntastic/syntastic'
@@ -59,23 +54,10 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 " let g:syntastic_c_include_dirs
 
-" Light line
-" Plug 'itchyny/lightline.vim'
-" Disable because of vim-airline
-
 " Cscope
 Plug 'chazy/cscope_maps'
-"find . -name '*.[ch]' | grep -v volvo > cscope.files        
-"find ../diven -name '*.[ch]' >> cscope.files
-"cscope -i cscope.files -Rb                                  
+" Docs: http://cscope.sourceforge.net/cscope_maps.vim
 
-"" http://vim.wikia.com/wiki/Cscope
-"" C CallTree
-" Plug 'hari-rangarajan/CCTree'
-
-":CCTreeLoadDB cscope.out
-"<C-\><
-"<C-\><
 Plug 'hari-rangarajan/CCTree'
 
 " Tarbar
@@ -161,11 +143,11 @@ Plug 'prabirshrestha/async.vim'
 Plug 'uiiaoo/java-syntax.vim'
 au BufRead,BufNewFile *.hal set filetype=java
 
-"Get filetype: set filetype
-"syntax match potionComment "\v#.*$"
-"highlight link potionComment Comment
+" :set filetype
+" :syntax match potionComment "\v#.*$"
+" :highlight link potionComment Comment
 
-" //// My plugins ////
+" Terminal open
 Plug 'edelangh/vim-termopen'
 
 nnoremap <F9> :!rg -I "\#define.*".<cword><cr>
@@ -173,13 +155,14 @@ vmap <C-C> "+y
 vmap q :s/^/\/\//<cr>:let @/ = ""<cr>
 
 
-" Initialize plugin system
+" Initialize plugin system end
 call plug#end()
 
 colorscheme molokai
 " Reload vim config: :so %
 nmap <tab> :tabnext<cr>
 nmap <S-tab> :tabprev<cr>
+
 " Terminal
 "Open: vsplit term://bash
 tnoremap <Esc> <C-\><C-n>
