@@ -13,17 +13,13 @@ set list
 set noswapfile
 " TODO: http://vim.wikia.com/wiki/Search_and_replace_in_multiple_buffers
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin('~/.vim/plugged')
 
 " Open file to line given in cmdline 'vim main.c:42'
-Plugin 'bogado/file-line'
+Plug 'bogado/file-line'
 
 " Move to root directory
-Plugin 'airblade/vim-rooter'
+Plug 'edelangh/vim-rooter', { 'branch': 'feature_callback' }
 " directories and all files (default)
 let g:rooter_targets = '/,*'
 let g:rooter_resolve_links = 1
@@ -31,83 +27,83 @@ let g:rooter_change_directory_for_non_project_files = 'current'
 let g:rooter_patterns = ['.git/', 'alchemy/', 'Cargo.toml', 'node_modules/']
 
 " let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+Plug 'VundleVim/Vundle.vim'
 
 " GIT
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " blame: Gblame
 
 " Fuzzy finder
-Plugin 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 let g:ctrlp_max_files=0
 "" search: <ctrl-p>
 
 " CompletionStuff
-Plugin 'Valloric/YouCompleteMe'
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-let g:ycm_error_symbol = 'X('
-let g:ycm_warning_symbol = ':|'
+"Plug 'Valloric/YouCompleteMe'
+"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+"let g:ycm_error_symbol = 'X('
+"let g:ycm_warning_symbol = ':|'
 
 " Allowing rename current file :/
-Plugin 'danro/rename.vim'
+Plug 'danro/rename.vim'
 
 " Syntax checking
-Plugin 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_c_checkers=['gcc', 'checkpatch']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 " let g:syntastic_c_include_dirs
 
 " Light line
-" Plugin 'itchyny/lightline.vim'
+" Plug 'itchyny/lightline.vim'
 " Disable because of vim-airline
 
 " Cscope
-Plugin 'chazy/cscope_maps'
+Plug 'chazy/cscope_maps'
 "find . -name '*.[ch]' | grep -v volvo > cscope.files        
 "find ../diven -name '*.[ch]' >> cscope.files
 "cscope -i cscope.files -Rb                                  
 
 "" http://vim.wikia.com/wiki/Cscope
 "" C CallTree
-" Plugin 'hari-rangarajan/CCTree'
+" Plug 'hari-rangarajan/CCTree'
 
 ":CCTreeLoadDB cscope.out
 "<C-\><
 "<C-\><
-Plugin 'hari-rangarajan/CCTree'
+Plug 'hari-rangarajan/CCTree'
 
 " Tarbar
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
 " vim-airline
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='deus'
 
 " ColorSchenes
-Plugin 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 
 " Toggle-Bool
-Plugin 'sagarrakshe/toggle-bool'
+Plug 'sagarrakshe/toggle-bool'
 noremap = :ToggleBool<CR>
 
 " Multicursors
-" Plugin 'terryma/vim-multiple-cursors'
+" Plug 'terryma/vim-multiple-cursors'
 "" https://github.com/terryma/vim-multiple-cursors#mapping
 "" Error: incompatible with an other plugins :/
 
 " Unite
-" Plugin 'Shougo/unite.vim'
+" Plug 'Shougo/unite.vim'
 
 " Mark
 "" Using Unit
-Plugin 'MattesGroeger/vim-bookmarks'
+Plug 'MattesGroeger/vim-bookmarks'
 " call unite#custom#profile('source/vim_bookmarks', 'context', {
 " 	\   'winheight': 13,
 " 	\   'direction': 'botright',
@@ -124,27 +120,27 @@ Plugin 'MattesGroeger/vim-bookmarks'
 "" Save bm: BookmarkSave <file_path>
 
 " vim-gutter: Git diff in file
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 " Use GDB !!! https://vimawesome.com/plugin/neogdb-vim#features
-Plugin 'huawenyu/neogdb.vim'
+Plug 'huawenyu/neogdb.vim'
 let g:neobugger_leader = ';'
 let g:neogdb_window = ['backtrace', 'breakpoint']
 
 " NERDTree
-Plugin 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
 " ?: ToggleHelp
 let g:NERDTreeWinSize=27
 " autocmd vimenter * NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 nmap <C-f> :NERDTreeTabsOpen<cr><C-w><right>:NERDTreeFind %<cr><C-w><right>
 
-Plugin 'jistr/vim-nerdtree-tabs'
+Plug 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_open_on_console_startup=0
 "let g:nerdtree_tabs_open_on_gui_startup=1
-Plugin 'ryanoasis/nerd-fonts'
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'ryanoasis/nerd-fonts'
+Plug 'ryanoasis/vim-devicons'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
@@ -159,23 +155,26 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ }
 
 " async jobs !
-Plugin 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/async.vim'
 
 " Java
-Plugin 'uiiaoo/java-syntax.vim'
+Plug 'uiiaoo/java-syntax.vim'
 au BufRead,BufNewFile *.hal set filetype=java
 
+"Get filetype: set filetype
+"syntax match potionComment "\v#.*$"
+"highlight link potionComment Comment
+
 " //// My plugins ////
-Plugin 'edelangh/vim-termopen'
+Plug 'edelangh/vim-termopen'
 
 nnoremap <F9> :!rg -I "\#define.*".<cword><cr>
 vmap <C-C> "+y
 vmap q :s/^/\/\//<cr>:let @/ = ""<cr>
 
 
-" //// End ////
-call vundle#end()            " required
-filetype plugin indent on    " required
+" Initialize plugin system
+call plug#end()
 
 colorscheme molokai
 " Reload vim config: :so %

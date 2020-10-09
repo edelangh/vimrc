@@ -2,10 +2,11 @@
 
 ### Install
 
-1) Install [Vundle](https://github.com/VundleVim/Vundle.vim) !
+1) Install [vim-plug](https://github.com/junegunn/vim-plug) !
 
 ```
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
 2) Create link from your .vimrc to the one here
@@ -15,7 +16,13 @@ mv ~/.vimrc ~/.vimrc.old
 ln -s $(path_repo)/.vimrc ~/.vimrc
 ```
 
-3) launch vim and do :PluginInstall<cr>
+3) Install cscope
+
+```
+sudo apt-get install -y cscope
+```
+
+3) close and open vim and do :PluginInstall<cr>
 
 4) Enjoy !
 
