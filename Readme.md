@@ -9,6 +9,10 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
+```
+pip2.7 install neovim
+```
+
 2) Create link from your .vimrc to the one here
 
 ```
