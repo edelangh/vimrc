@@ -120,7 +120,6 @@ nmap <C-f> :NERDTreeTabsOpen<cr><C-w><right>:NERDTreeFind %<cr><C-w><right>
 Plug 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_open_on_console_startup=0
 "let g:nerdtree_tabs_open_on_gui_startup=1
-" Plug 'ryanoasis/nerd-fonts'
 Plug 'ryanoasis/vim-devicons'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 let g:NERDTreeGitStatusIndicatorMapCustom = {

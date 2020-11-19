@@ -26,9 +26,25 @@ ln -s $(path_repo)/.vimrc ~/.vimrc
 sudo apt-get install -y cscope
 ```
 
-3) close and open vim and do :PluginInstall<cr>
+4) Install plugins
 
-4) Enjoy !
+```
+vim +PlugInstall +qall
+vim +PlugUpdate +qall
+```
+
+5) Install fonts
+
+```
+cd /tmp
+git clone https://github.com/ryanoasis/nerd-fonts
+cd nerd-fonts
+./install Ubuntu
+cd ..
+rm -rf nerd-fonts
+```
+
+6) Enjoy !
 
 ### Shotcuts
 
