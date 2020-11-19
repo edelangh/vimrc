@@ -146,6 +146,15 @@ au BufRead,BufNewFile *.hal set filetype=java
 " :syntax match potionComment "\v#.*$"
 " :highlight link potionComment Comment
 
+" javascript / jsx
+
+Plug 'yuezk/vim-js' " Better syntax highlight for modern js
+Plug 'pangloss/vim-javascript'
+Plug 'MaxMEllon/vim-jsx-pretty'
+let g:vim_jsx_pretty_colorful_config = 1
+
+autocmd FileType javascript set tabstop=8|set shiftwidth=4|set expandtab
+
 " Terminal open
 Plug 'edelangh/vim-termopen'
 
