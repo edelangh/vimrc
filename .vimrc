@@ -13,7 +13,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'bogado/file-line'
 
 " Move to root directory
-Plug 'edelangh/vim-rooter', { 'branch': 'feature_callback' }
+Plug 'airblade/vim-rooter'
 " directories and all files (default)
 let g:rooter_targets = '/,*'
 let g:rooter_resolve_links = 1
@@ -216,3 +216,5 @@ fu! g:RooterPostChangeDirectory()
 		" TODO: We catch all error of cscope, but we should only catch
 	endif
 endfu
+
+autocmd User RooterChDir call RooterPostChangeDirectory()
