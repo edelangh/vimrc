@@ -73,7 +73,7 @@ Plug 'flazz/vim-colorschemes'
 
 " Toggle-Bool
 Plug 'sagarrakshe/toggle-bool'
-noremap = :ToggleBool<CR>
+nnoremap = :ToggleBool<CR>
 
 " Multicursors
 " Plug 'terryma/vim-multiple-cursors'
