@@ -41,7 +41,7 @@ vim +PlugUpdate +qall
 cd /tmp
 git clone https://github.com/ryanoasis/nerd-fonts
 cd nerd-fonts
-./install Ubuntu
+./install.sh Ubuntu
 cd ..
 rm -rf nerd-fonts
 ```
