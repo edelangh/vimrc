@@ -54,6 +54,10 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 " let g:syntastic_c_include_dirs
 
+" Linux device-tree indent
+Plug 'jyelloz/vim-dts-indent'
+"""" DEV TODO: Jump to device-tree and back
+
 " Cscope
 Plug 'chazy/cscope_maps'
 " Docs: http://cscope.sourceforge.net/cscope_maps.vim
