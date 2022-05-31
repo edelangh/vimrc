@@ -7,6 +7,11 @@ Use neovim !
 sudo apt-get install neovim
 ```
 
+Other dependencies
+```
+sudo apt-get install ruby-dev cscope
+```
+
 ### Install
 
 1) Install vim and dependencies
@@ -15,19 +20,16 @@ sudo apt-get install neovim
 git clone https://github.com/edelangh/vimrc
 
 # Install [vim-plug](https://github.com/junegunn/vim-plug) !
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 # Install the different neovim language extension
-pip2.7 install neovim
-gem install neovim
+gem install --user-install neovim
 
 # Use it as your default vim configuration
-mv ~/.vimrc ~/.vimrc.old
-ln -s $(path_repo)/.vimrc ~/.vimrc
+mkdir -p $HOME/.config/nvim
+ln -s $(path_repo)/.vimrc $HOME/.config/nvim/init.vim
 
-# Install the necessary binary with apt
-sudo apt-get install -y cscope
 ```
 
 2) Install plugins
@@ -39,7 +41,7 @@ vim +PlugUpdate +qall
 3) Install fonts
 ```
 cd /tmp
-git clone https://github.com/ryanoasis/nerd-fonts
+git clone https://github.com/ryanoasis/nerd-fonts --depth=1
 cd nerd-fonts
 ./install.sh Ubuntu
 cd ..
